@@ -52,6 +52,8 @@ endif()
 add_subdirectory(include)
 add_subdirectory(src)
 
+message("exec " ${PARSER_EXECUTABLE})
+
 include(BlockLibMacros.cmake)
 
 function(create_block_library LIB_NAME)
