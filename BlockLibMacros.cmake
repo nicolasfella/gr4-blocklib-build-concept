@@ -47,6 +47,8 @@ function(gr_generate_block_instantiations LIB_NAME)
             set(PARSER_EXECUTABLE ${PROJECT_BINARY_DIR}/tools_build/parse_registrations)
         endif()
 
+        message("Parser" ${PARSER_EXECUTABLE})
+
         # run the parser tool immediately at configuration time.
         execute_process(
                 COMMAND ${PARSER_EXECUTABLE} "${ABS_HDR}" "${GEN_DIR}" ${PARSER_SPLIT_OPTION}
