@@ -54,10 +54,9 @@ add_subdirectory(src)
 
 message("exec " ${PARSER_EXECUTABLE})
 
-add_custom_target(mycrutch)
-set_target_properties(TARGET mycrutch PROPERTIES PARSER_EXECUTABLE ${PARSER_EXECUTABLE})
+configure_file(BlockLibMacros.cmake.in BlockLibMacros.cmake @ONLY)
 
-include(BlockLibMacros.cmake)
+include(${PROJECT_BINARY_DIR}/BlockLibMacros.cmake)
 
 function(create_block_library LIB_NAME)
     set(options "")
@@ -99,7 +98,7 @@ install(EXPORT BlockLibTargets DESTINATION ${CMAKECONFIG_INSTALL_DIR} NAMESPACE 
 
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/BlockLibConfig.cmake"
-    "${CMAKE_CURRENT_SOURCE_DIR}/BlockLibMacros.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/BlockLibMacros.cmake"
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     COMPONENT Devel
 )
