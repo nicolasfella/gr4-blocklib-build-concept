@@ -51,6 +51,12 @@ function(gr_generate_block_instantiations LIB_NAME)
 
         message(STATUS "Generating code for header: ${ABS_HDR} -> ${GEN_DIR} with PARSER_SPLIT_OPTION=${PARSER_SPLIT_OPTION}")
 
+        if (TARGET mycrutch)
+            message("Have it")
+        else()
+            message("Have not it :(")
+        endif()
+
         message("ddd" ${PARSER_EXECUTABLE})
 
         # run the parser tool immediately at configuration time.
