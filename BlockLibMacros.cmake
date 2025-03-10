@@ -58,6 +58,7 @@ function(gr_generate_block_instantiations LIB_NAME)
                 OUTPUT_STRIP_TRAILING_WHITESPACE
                 ERROR_STRIP_TRAILING_WHITESPACE
         )
+        message("res" ${gen_res})
         message(STATUS "Output from parse_registrations for ${ABS_HDR}:\n${gen_out}")
         if(NOT gen_res EQUAL 0)
             message(FATAL_ERROR "Error running parse_registrations on ${HDR}: ${gen_err}")
