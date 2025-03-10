@@ -11,6 +11,8 @@ endif()
 
 message("Parser" ${PARSER_EXECUTABLE})
 
+add_custom_target(mycrutch)
+
 function(gr_generate_block_instantiations LIB_NAME)
     set(options "")
     set(oneValueArgs "")
