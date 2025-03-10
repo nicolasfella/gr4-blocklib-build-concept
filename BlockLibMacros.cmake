@@ -49,6 +49,8 @@ function(gr_generate_block_instantiations LIB_NAME)
 
         message(STATUS "Generating code for header: ${ABS_HDR} -> ${GEN_DIR} with PARSER_SPLIT_OPTION=${PARSER_SPLIT_OPTION}")
 
+        message("ddd" ${PARSER_EXECUTABLE})
+
         # run the parser tool immediately at configuration time.
         execute_process(
                 COMMAND ${PARSER_EXECUTABLE} "${ABS_HDR}" "${GEN_DIR}" ${PARSER_SPLIT_OPTION}
