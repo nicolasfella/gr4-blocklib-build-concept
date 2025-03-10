@@ -51,11 +51,20 @@ add_subdirectory(include)
 add_subdirectory(src)
 
 # define global block building command
-function(create_block_library LIB_NAME)
+
+function(gr_generate_block_instantiations LIB_NAME)
     set(options "")
     set(oneValueArgs "")
     set(multiValueArgs HEADERS SOURCES)
     cmake_parse_arguments(CBL "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    if (NOT TARGET ${LIB_NAME})
+        message(FATAL_ERROR "${LIB_NAME} is not a target")
+    endif()
+
+    if (NOT CBL_HEADERS)
+        message(FATAL_ERROR "No headers passed to gr_generate_block_instantiations")
+    endif()
 
     # directory where parse_registrations will output .cpp files.
     set(GEN_DIR "${CMAKE_BINARY_DIR}/generated_plugins/${LIB_NAME}")
@@ -107,10 +116,21 @@ function(create_block_library LIB_NAME)
         list(APPEND GEN_CPP_LIST ${GENERATED_FILES})
     endforeach()
 
+    target_sources(${LIB_NAME} PRIVATE ${GEN_CPP_LIST})
+endfunction()
+
+function(create_block_library LIB_NAME)
+    set(options "")
+    set(oneValueArgs "")
+    set(multiValueArgs HEADERS SOURCES)
+    cmake_parse_arguments(CBL "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
     add_library(${LIB_NAME} SHARED
-            ${GEN_CPP_LIST}
             ${CBL_SOURCES}
     )
+
+    gr_generate_block_instantiations(${LIB_NAME} HEADERS ${CBL_HEADERS})
+
     target_include_directories(${LIB_NAME} PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
             $<INSTALL_INTERFACE:include>
