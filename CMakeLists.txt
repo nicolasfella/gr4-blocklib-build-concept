@@ -11,7 +11,7 @@ include(GNUInstallDirs)
 # --------------------------------------------------------------------------
 # Manually configure and build the parser tool in a separate directory
 # --------------------------------------------------------------------------
-set(TOOLS_BUILD_DIR "${CMAKE_BINARY_DIR}/tools_build")
+set(TOOLS_BUILD_DIR "${PROJECT_BINARY_DIR}/tools_build")
 if(NOT EXISTS "${TOOLS_BUILD_DIR}/CMakeCache.txt")
     message(STATUS "Configuring parser tool in ${TOOLS_BUILD_DIR}...")
     execute_process(
