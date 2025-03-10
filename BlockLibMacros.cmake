@@ -43,7 +43,9 @@ function(gr_generate_block_instantiations LIB_NAME)
 
         message(STATUS "Generating code for header: ${ABS_HDR} -> ${GEN_DIR} with PARSER_SPLIT_OPTION=${PARSER_SPLIT_OPTION}")
 
-        message("Hello " ${CMAKE_CURRENT_LIST_DIR})
+        if (NOT PARSER_EXECUTABLE)
+            set(PARSER_EXECUTABLE ${PROJECT_BINARY_DIR}/tools_build/parse_registrations)
+        endif()
 
         # run the parser tool immediately at configuration time.
         execute_process(
