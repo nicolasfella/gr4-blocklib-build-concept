@@ -15,7 +15,7 @@ set(TOOLS_BUILD_DIR "${PROJECT_BINARY_DIR}/tools_build")
 if(NOT EXISTS "${TOOLS_BUILD_DIR}/CMakeCache.txt")
     message(STATUS "Configuring parser tool in ${TOOLS_BUILD_DIR}...")
     execute_process(
-            COMMAND ${CMAKE_COMMAND} -S ${CMAKE_SOURCE_DIR}/tools -B ${TOOLS_BUILD_DIR} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+            COMMAND ${CMAKE_COMMAND} -S ${PROJECT_SOURCE_DIR}/tools -B ${TOOLS_BUILD_DIR} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
             RESULT_VARIABLE config_result
             OUTPUT_VARIABLE config_output
             ERROR_VARIABLE config_error
