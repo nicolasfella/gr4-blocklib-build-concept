@@ -38,11 +38,11 @@ function(gr_generate_block_instantiations LIB_NAME)
 
         message(STATUS "Generating code for header: ${ABS_HDR} -> ${GEN_DIR} with PARSER_SPLIT_OPTION=${PARSER_SPLIT_OPTION}")
 
+        # BlockLibConfig.cmake sets this when BlockLib is found via find_package
+        # However when FetchContent is used that doesn't happen, so fall back to the build path
         if (NOT PARSER_EXECUTABLE)
             set(PARSER_EXECUTABLE @PROJECT_BINARY_DIR@/tools_build/parse_registrations)
         endif()
-
-        message("ddd" ${PARSER_EXECUTABLE})
 
         # run the parser tool immediately at configuration time.
         execute_process(
@@ -53,7 +53,6 @@ function(gr_generate_block_instantiations LIB_NAME)
                 OUTPUT_STRIP_TRAILING_WHITESPACE
                 ERROR_STRIP_TRAILING_WHITESPACE
         )
-        message("res" ${gen_res})
         message(STATUS "Output from parse_registrations for ${ABS_HDR}:\n${gen_out}")
         if(NOT gen_res EQUAL 0)
             message(FATAL_ERROR "Error running parse_registrations on ${HDR}: ${gen_err}")

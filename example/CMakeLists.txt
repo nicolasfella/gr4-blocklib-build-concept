@@ -1,10 +1,6 @@
 # example/CMakeLists.txt
 
 add_library(gr_common INTERFACE)
-# target_include_directories(gr_common INTERFACE
-#         "${CMAKE_SOURCE_DIR}/blocks/basic/include"
-#         "${CMAKE_SOURCE_DIR}/blocks/math/include"
-# )
 
 add_executable(test_registry_basic main.cpp)
 add_executable(test_registry_math main.cpp)

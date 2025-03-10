@@ -52,8 +52,6 @@ endif()
 add_subdirectory(include)
 add_subdirectory(src)
 
-message("exec " ${PARSER_EXECUTABLE})
-
 configure_file(BlockLibMacros.cmake.in BlockLibMacros.cmake @ONLY)
 
 include(${PROJECT_BINARY_DIR}/BlockLibMacros.cmake)
@@ -73,7 +71,6 @@ function(create_block_library LIB_NAME)
     target_include_directories(${LIB_NAME} PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:include>
-           # "${CMAKE_SOURCE_DIR}/include"
     )
 
     set_target_properties(${LIB_NAME} PROPERTIES CXX_STANDARD 23)
@@ -108,5 +105,7 @@ install(FILES
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     COMPONENT Devel
 )
+
+install(PROGRAMS ${PARSER_EXECUTABLE} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_subdirectory(example)
