@@ -51,6 +51,10 @@ function(gr_generate_block_instantiations LIB_NAME)
 
         if (TARGET mycrutch)
             message("Have it")
+
+            get_target_property(FOO mycrutch PARSER_EXECUTABLE)
+            message("foo" ${FOO})
+
         else()
             message("Have not it :(")
         endif()
