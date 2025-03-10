@@ -1,6 +1,9 @@
 # define global block building command
 
 message("Hi there " ${CMAKE_CURRENT_LIST_DIR})
+message("Hi there " ${CMAKE_CURRENT_BINARY_DIR})
+message("Hi there " ${CMAKE_BINARY_DIR})
+message("Hi there " ${PROJECT_BINARY_DIR})
 
 function(gr_generate_block_instantiations LIB_NAME)
     set(options "")
