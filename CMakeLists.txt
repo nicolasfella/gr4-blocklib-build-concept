@@ -70,6 +70,12 @@ function(create_block_library LIB_NAME)
 
     gr_generate_block_instantiations(${LIB_NAME} HEADERS ${CBL_HEADERS})
 
+    target_include_directories(${LIB_NAME} PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+           # "${CMAKE_SOURCE_DIR}/include"
+    )
+
     set_target_properties(${LIB_NAME} PROPERTIES CXX_STANDARD 23)
     install(TARGETS ${LIB_NAME} LIBRARY DESTINATION lib)
 endfunction()
