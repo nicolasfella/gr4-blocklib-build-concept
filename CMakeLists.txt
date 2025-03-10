@@ -54,6 +54,8 @@ add_subdirectory(src)
 
 message("exec " ${PARSER_EXECUTABLE})
 
+add_custom_target(mycrutch)
+
 include(BlockLibMacros.cmake)
 
 function(create_block_library LIB_NAME)
