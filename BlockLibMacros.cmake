@@ -1,5 +1,7 @@
 # define global block building command
 
+message("Hi there " ${CMAKE_CURRENT_LIST_DIR})
+
 function(gr_generate_block_instantiations LIB_NAME)
     set(options "")
     set(oneValueArgs "")
