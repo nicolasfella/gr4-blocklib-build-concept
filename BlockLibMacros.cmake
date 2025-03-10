@@ -6,7 +6,7 @@ message("Hi there " ${CMAKE_BINARY_DIR})
 message("Hi there " ${PROJECT_BINARY_DIR})
 
 if (NOT PARSER_EXECUTABLE)
-    set(PARSER_EXECUTABLE ${PROJECT_BINARY_DIR}/tools_build/parse_registrations)
+    set(PARSER_EXECUTABLE ${PROJECT_BINARY_DIR}/tools_build/parse_registrations CACHE)
 endif()
 
 message("Parser" ${PARSER_EXECUTABLE})
